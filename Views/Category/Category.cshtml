@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Category</title>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_save").click(function () {
+                debugger;
+                var CategoryDal = new Object();
+                CategoryDal.Categoryname = $('#txt_categoryname').val();
+                // CategoryDal.MenuName = "aaa";
+                // CategoryDal.menu_path = "www.google.com";
+
+                if (CategoryDal != null) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/Category/AddCategory",
+                        data: JSON.stringify(CategoryDal),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            if (response != null) {
+                                alert("Name : " + response.Categoryname);
+                            } else {
+                                alert("Something went wrong");
+                            }
+                        },
+                        failure: function (response) {
+                            alert(response.responseText);
+                        },
+                        error: function (response) {
+                            alert(response.responseText);
+                        }
+                    });
+                }
+            });
+        })
+    </script>
+
+</head>
+<body>
+   
+        Category Name : <input type="text" id="txt_categoryname" /> <br/>
+
+   
+    <input type="button" id="btn_save"  value="Save"/>
+
+
+    <br/>
+    <br/>
+
+    <table id="tbl">
+        <tr>
+            <td>Category Name</td>
+           
+        </tr>
+
+    </table>
+
+
+    <script language="javascript">
+
+        $.get("ShowCategoryList", null, BindData);
+        function BindData(CategoryDal)
+        {
+            var tbl = $("#tbl");
+            for (var j = 0; j < CategoryDal.length; j++) {
+                var newRow = "<tr>" +
+                    "<td>" + CategoryDal[j].Categoryname + "</td>" +
+                    "</tr>";
+                tbl.append(newRow);
+            }
+        }
+      
+    </script>
+    
+</body>
+</html>

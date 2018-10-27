@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = "~/Views/Shared/AdminMaster.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserRegistration</title>
+</head>
+<body>
+  
+    <div>
+        <form action="~/UserRegistration/Submit" method="post">
+            <h2>User Registration</h2> <br />
+            Name : <input type="text" name="txt_name" /> <br />
+            Phone No : <input type="text" name="txt_phone" /> <br />
+            Email Id : <input type="text" name="txt_email" /> <br />
+            User Name : <input type="text" name="txt_username" /> <br />
+            Password : <input type="text" name="txt_password" /> <br />
+            <input type="submit" name="btn_submit" /> <br />
+
+        </form>
+
+
+       
+
+    </div>
+    
+</body>
+</html>
